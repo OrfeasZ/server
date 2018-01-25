@@ -23,7 +23,7 @@ type ServerOpts struct {
 	Name string
 
 	// The hostname that the FTP server should listen on. Optional, defaults to
-	// "::", which means all hostnames on ipv4 and ipv6.
+	// "", which means all hostnames on ipv4 and ipv6.
 	Hostname string
 
 	// Public IP of the server
@@ -73,11 +73,9 @@ func serverOptsWithDefaults(opts *ServerOpts) *ServerOpts {
 	if opts == nil {
 		opts = &ServerOpts{}
 	}
-	if opts.Hostname == "" {
-		newOpts.Hostname = "::"
-	} else {
-		newOpts.Hostname = opts.Hostname
-	}
+	
+	newOpts.Hostname = opts.Hostname
+
 	if opts.Port == 0 {
 		newOpts.Port = 3000
 	} else {
